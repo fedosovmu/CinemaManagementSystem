@@ -12,7 +12,7 @@ namespace CinemaManagementSystemClient
 {
     public partial class FilmDescriptionForm : Form
     {
-        public FilmDescriptionForm(bool adminMod)
+        public FilmDescriptionForm(bool adminMod, ClientNet connection)
         {
             InitializeComponent();
 
@@ -38,7 +38,8 @@ namespace CinemaManagementSystemClient
                 SaveButton.Visible = false;
                 EditButton.Visible = true;
 
-                // <--- Посылаем запрос на сервер
+                connection.SendMessage("EditFilm#" + FilmNameTextBox.Text 
+                                      + "#" + FilmDescriptionRichTextBox.Text);
             };
         }
     }

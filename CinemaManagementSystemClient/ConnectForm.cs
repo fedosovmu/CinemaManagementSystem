@@ -49,15 +49,7 @@ namespace CinemaManagementSystemClient
                 var mainForm = new MainForm(Connection);
                 Connection.Disconneted += () =>
                 {
-                    BeginInvoke(new Action(() => { this.Show(); mainForm.Close(); }));
-                };
-                mainForm.FormClosed += (a, e) =>
-                {
-                    if (!this.Visible)
-                    {
-                        //Connection.Disconnect();
-                        this.Close();
-                    }
+                    BeginInvoke(new Action(() =>  this.Show()));
                 };
                 mainForm.Show();
             }

@@ -33,13 +33,13 @@ namespace CinemaManagementSystemClient
 
             FilmDescriptionButton.Click += (a, e) =>
             {
-                var filmDescriptionForm = new FilmDescriptionForm(AdminMod);
+                var filmDescriptionForm = new FilmDescriptionForm(AdminMod, connection);
                 filmDescriptionForm.Show();
             };
 
             EditFilmButton.Click += (a, e) =>
             {
-                var filmDescriptionForm = new FilmDescriptionForm(AdminMod);
+                var filmDescriptionForm = new FilmDescriptionForm(AdminMod, connection);
                 filmDescriptionForm.Show();
                 filmDescriptionForm.EditButton.PerformClick();
             };
@@ -50,6 +50,11 @@ namespace CinemaManagementSystemClient
             };
 
             DisconnectButton.Click += (a, e) =>
+            {
+                Close();
+            };
+
+            this.FormClosed += (a, e) =>
             {
                 Connection.Disconnect();
             };
