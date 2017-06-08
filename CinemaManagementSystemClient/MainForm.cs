@@ -17,7 +17,8 @@ namespace CinemaManagementSystemClient
 
         public MainForm(ClientNet connection)
         {
-            InitializeComponent();          
+            Connection = connection;
+            InitializeComponent();
 
             AdminModeButton.Click += (a, e) =>
             {
@@ -26,6 +27,8 @@ namespace CinemaManagementSystemClient
                 AddShowButton.Enabled = true;
                 EditShowButton.Enabled = true;
                 AdminMod = true;
+
+                Connection.SendMessage("AdminMode#123");
             };
 
             FilmDescriptionButton.Click += (a, e) =>
@@ -41,10 +44,14 @@ namespace CinemaManagementSystemClient
                 filmDescriptionForm.EditButton.PerformClick();
             };
 
+            Connection.MsgRecievedEvent += (message) =>
+            {
+                BeginInvoke(new Action(() => DebuggingRichTextBox.AppendText(message + "\n")));             
+            };
+
             DisconnectButton.Click += (a, e) =>
             {
-                this.Close();
-                
+                Connection.Disconnect();
             };
         }
     }

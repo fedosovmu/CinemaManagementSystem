@@ -40,6 +40,7 @@
             this.FilmListLabel = new System.Windows.Forms.Label();
             this.ShowsListLabel = new System.Windows.Forms.Label();
             this.DisconnectButton = new System.Windows.Forms.Button();
+            this.DebuggingRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // AdminModeButton
@@ -152,11 +153,21 @@
             this.DisconnectButton.Text = "Disconnect";
             this.DisconnectButton.UseVisualStyleBackColor = true;
             // 
-            // ShowsForm
+            // DebuggingRichTextBox
+            // 
+            this.DebuggingRichTextBox.Location = new System.Drawing.Point(513, 4);
+            this.DebuggingRichTextBox.Name = "DebuggingRichTextBox";
+            this.DebuggingRichTextBox.ReadOnly = true;
+            this.DebuggingRichTextBox.Size = new System.Drawing.Size(209, 360);
+            this.DebuggingRichTextBox.TabIndex = 18;
+            this.DebuggingRichTextBox.Text = "";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 376);
+            this.ClientSize = new System.Drawing.Size(728, 376);
+            this.Controls.Add(this.DebuggingRichTextBox);
             this.Controls.Add(this.DisconnectButton);
             this.Controls.Add(this.ShowsListLabel);
             this.Controls.Add(this.FilmListLabel);
@@ -169,7 +180,7 @@
             this.Controls.Add(this.BookingButton);
             this.Controls.Add(this.AddShowButton);
             this.Controls.Add(this.AdminModeButton);
-            this.Name = "ShowsForm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ShowsForm";
             this.ResumeLayout(false);
@@ -190,7 +201,8 @@
         public System.Windows.Forms.ListBox ShowsListBox;
         public System.Windows.Forms.Label FilmListLabel;
         public System.Windows.Forms.Label ShowsListLabel;
-        private System.Windows.Forms.Button DisconnectButton;
+        public System.Windows.Forms.Button DisconnectButton;
+        public System.Windows.Forms.RichTextBox DebuggingRichTextBox;
     }
 }
 

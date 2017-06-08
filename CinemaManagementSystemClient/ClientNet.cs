@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CinemaManagementSystemClient
 {
@@ -17,13 +19,13 @@ namespace CinemaManagementSystemClient
 
         public delegate void MsgRecieved(string data);
         public event MsgRecieved MsgRecievedEvent;
-        public event Action Connected;
-        public event Action ConnectionError;
+        public event Action Disconneted;
+        const int PORT = 42;
 
-        public ClientNet(string hostIp, int port)
+        public ClientNet(string hostIp)
         {
             this.hostIp = hostIp;
-            this.port = port;
+            this.port = PORT;
 
             client = new TcpClient();
             try
@@ -33,12 +35,10 @@ namespace CinemaManagementSystemClient
 
                 Thread receiveThread = new Thread(new ThreadStart(ReceiveMessage));
                 receiveThread.Start();
-
-                this.Connected();
             }
-            catch
+            catch (SocketException e)
             {
-                this.ConnectionError();
+                throw new ArgumentException("Не удалось подключиться к серверу", e);
             }
         }
 
@@ -68,9 +68,17 @@ namespace CinemaManagementSystemClient
                     string message = builder.ToString();
                     MsgRecievedEvent(message);
                 }
-                catch
+                catch (SocketException e)
                 {
-                    this.ConnectionError();
+                    MessageBox.Show("Ошибка соединения");
+                    Disconnect();
+                    break;
+                }    
+                catch (IOException e)
+                {
+                    MessageBox.Show("Ошибка соединения.");
+                    Disconnect();
+                    break;
                 }
             }
         }
@@ -82,6 +90,7 @@ namespace CinemaManagementSystemClient
                 stream.Close();
             if (client != null)
                 client.Close();
+            Disconneted();
         }
     }
 }
