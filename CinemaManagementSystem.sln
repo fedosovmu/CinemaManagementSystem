@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaManagementSystemClient", "CinemaManagementSystemClient\CinemaManagementSystemClient.csproj", "{4785CED5-2354-4E8F-A74D-59941D902A7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaManagementSystemServer", "..\..\..\..\..\Desktop\ConsoleApplication2\ConsoleApplication2\CinemaManagementSystemServer.csproj", "{2CB620CE-1878-43BA-A62D-CED003F1B50E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaManagementSystemServer", "..\CinemaManagementSystemServer\ConsoleApplication2\CinemaManagementSystemServer.csproj", "{2CB620CE-1878-43BA-A62D-CED003F1B50E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
