@@ -21,6 +21,7 @@ namespace CinemaManagementSystemClient
             Connection = connection;
             ModelManager = new BusinessModelManager(connection);
             InitializeComponent();
+            EventsInitialization();
         }
 
 
@@ -35,7 +36,7 @@ namespace CinemaManagementSystemClient
                 EditShowButton.Enabled = true;
                 AdminMod = true;
 
-                Connection.SendMessage("AdminMode#123");
+                //Connection.SendMessage("AdminMode#123");
             };
 
             FilmDescriptionButton.Click += (a, e) =>
@@ -60,6 +61,12 @@ namespace CinemaManagementSystemClient
             {
                 Connection.Disconnect();
             };
+
+            AddFilmButton.Click += (a, e) =>
+            {
+                var addFilmForm = new AddFilmForm(Connection);
+                addFilmForm.Show();
+            };       
 
             // <--------
 
