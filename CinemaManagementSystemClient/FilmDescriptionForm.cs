@@ -12,7 +12,7 @@ namespace CinemaManagementSystemClient
 {
     public partial class FilmDescriptionForm : Form
     {
-        public FilmDescriptionForm(bool adminMod, ClientNet connection)
+        public FilmDescriptionForm(bool adminMod, NetConnection connection)
         {
             InitializeComponent();
 

@@ -12,14 +12,21 @@ namespace CinemaManagementSystemClient
 {
     public partial class MainForm : Form
     {
-        public ClientNet Connection;
+        public NetConnection Connection;
+        public BusinessModelManager ModelManager;
         bool AdminMod;
 
-        public MainForm(ClientNet connection)
+        public MainForm(NetConnection connection)
         {
             Connection = connection;
+            ModelManager = new BusinessModelManager(connection);
             InitializeComponent();
+        }
 
+
+
+        public void EventsInitialization()
+        {
             AdminModeButton.Click += (a, e) =>
             {
                 AddFilmButton.Enabled = true;
@@ -33,21 +40,16 @@ namespace CinemaManagementSystemClient
 
             FilmDescriptionButton.Click += (a, e) =>
             {
-                var filmDescriptionForm = new FilmDescriptionForm(AdminMod, connection);
+                var filmDescriptionForm = new FilmDescriptionForm(AdminMod, Connection);
                 filmDescriptionForm.Show();
             };
 
             EditFilmButton.Click += (a, e) =>
             {
-                var filmDescriptionForm = new FilmDescriptionForm(AdminMod, connection);
+                var filmDescriptionForm = new FilmDescriptionForm(AdminMod, Connection);
                 filmDescriptionForm.Show();
                 filmDescriptionForm.EditButton.PerformClick();
-            };
-
-            Connection.MsgRecievedEvent += (message) =>
-            {
-                BeginInvoke(new Action(() => DebuggingRichTextBox.AppendText(message + "\n")));             
-            };
+            };           
 
             DisconnectButton.Click += (a, e) =>
             {
@@ -57,6 +59,17 @@ namespace CinemaManagementSystemClient
             this.FormClosed += (a, e) =>
             {
                 Connection.Disconnect();
+            };
+
+            // <--------
+
+            ModelManager.MoviesChanged += () =>
+            {
+                FilmsListBox.Items.Clear();
+                foreach(var Movie in ModelManager.Movies)
+                {
+                    FilmsListBox.Items.Add(Movie.Name);
+                }
             };
         }
     }

@@ -158,7 +158,7 @@
             this.DebuggingRichTextBox.Location = new System.Drawing.Point(513, 4);
             this.DebuggingRichTextBox.Name = "DebuggingRichTextBox";
             this.DebuggingRichTextBox.ReadOnly = true;
-            this.DebuggingRichTextBox.Size = new System.Drawing.Size(209, 360);
+            this.DebuggingRichTextBox.Size = new System.Drawing.Size(209, 330);
             this.DebuggingRichTextBox.TabIndex = 18;
             this.DebuggingRichTextBox.Text = "";
             // 

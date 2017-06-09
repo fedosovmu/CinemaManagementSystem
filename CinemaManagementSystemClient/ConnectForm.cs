@@ -14,7 +14,7 @@ namespace CinemaManagementSystemClient
 {
     public partial class ConnectForm : Form
     {
-        public ClientNet Connection;       
+        public NetConnection Connection;
 
         public ConnectForm()
         {
@@ -43,7 +43,7 @@ namespace CinemaManagementSystemClient
         {
             try
             {
-                Connection = new ClientNet(ip);
+                Connection = new NetConnection(ip);
                 this.Hide();
 
                 var mainForm = new MainForm(Connection);

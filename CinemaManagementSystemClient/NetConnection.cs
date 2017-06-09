@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CinemaManagementSystemClient
 {
-    public class ClientNet
+    public class NetConnection
     {
         private string hostIp;
         private int port;
@@ -22,7 +22,7 @@ namespace CinemaManagementSystemClient
         public event Action Disconneted;
         const int PORT = 42;
 
-        public ClientNet(string hostIp)
+        public NetConnection(string hostIp)
         {
             this.hostIp = hostIp;
             this.port = PORT;
